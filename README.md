@@ -82,4 +82,4 @@ Yes. It's the official Discord API, the same one games use.
 No. Python 3 is required, it's a two-minute install from python.org.
 
 **Why would I do this?**
-No idea. But your friends will see "Playing Hermes" and start asking questions. That's the point.
+No idea. But your friends will see "Playing Hermes" and start asking questions, or know that you are working hard to take their job. That's the point.
