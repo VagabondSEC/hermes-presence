@@ -1,53 +1,53 @@
 # Hermes Presence
 
-Fais croire à tes potes que tu joues à Hermes sur Discord. Comme si c'était un vrai jeu. Avec le chrono qui tourne et tout.
+Make your friends think you're playing Hermes on Discord. Like it's a real game. With the session timer and everything.
 
-Un double-clic et c'est réglé. Aucun terminal à garder ouvert, ça se relance tout seul à chaque démarrage de ta machine. Ton profil affiche "Joue à Hermes" et personne ne saura que c'est pas un jeu AAA.
+One double-click and you're done. No terminal to keep open, it restarts by itself every time you boot your machine. Your profile shows "Playing Hermes" and nobody will know it's not a AAA game.
 
-## Installation Windows
+## Windows install
 
-1. Installe Python depuis python.org si tu ne l'as pas (coche Add to PATH)
-2. Double-clique sur install.vbs
-3. Regarde ton profil Discord
+1. Install Python from python.org if you don't have it (tick Add to PATH)
+2. Double-click install.vbs
+3. Look at your Discord profile
 
-## Installation Mac
+## Mac install
 
-1. Installe Python depuis python.org si tu ne l'as pas
-2. Double-clique sur install.command (la première fois, clic droit puis Ouvrir)
-3. Regarde ton profil Discord
+1. Install Python from python.org if you don't have it
+2. Double-click install.command (first time, right-click then Open)
+3. Look at your Discord profile
 
-Si macOS refuse de lancer le fichier, ouvre un terminal dans le dossier et tape chmod +x install.command puis réessaie.
+If macOS refuses to run the file, open a terminal in the folder and type chmod +x install.command then try again.
 
-## Personnaliser
+## Customize
 
-Ouvre config.json avec un éditeur de texte.
+Open config.json with a text editor.
 
-- details    la première ligne sous "Joue à Hermes"
-- state      la deuxième ligne
-- only_when_process    si tu veux que la présence s'affiche seulement quand un programme précis tourne (par exemple Hermes.exe)
-- client_id  ton propre ID d'application Discord si tu veux pas utiliser l'app partagée
+- details    the first line under "Playing Hermes"
+- state      the second line
+- only_when_process    if you want the presence to show only when a specific program is running (e.g. Hermes.exe)
+- client_id  your own Discord application ID if you don't want to use the shared app
 
-## Désinstaller
+## Uninstall
 
-Double-clique sur uninstall.vbs sur Windows, uninstall.command sur Mac. C'est tout.
+Double-click uninstall.vbs on Windows, uninstall.command on Mac. That's it.
 
-## Comment ça marche
+## How it works
 
-Discord Rich Presence, l'API officielle de Discord. Le script parle directement au client Discord installé sur ta machine, exactement comme le ferait un jeu. Aucun bot, aucun token, aucune donnée qui passe par un serveur tiers.
+Discord Rich Presence, the official Discord API. The script talks directly to the Discord client installed on your machine, exactly like a game would. No bot, no token, no data going through a third-party server.
 
-## Questions fréquentes
+## FAQ
 
-**Il faut créer une app Discord ?**
-Non. Le repo embarque une app partagée nommée Hermes, prête à l'emploi. Si tu veux ta propre app, crée-la sur discord.com/developers/applications et colle ton ID dans config.json.
+**Do I need to create a Discord app?**
+No. The repo ships with a shared app named Hermes, ready to use. If you want your own app, create it at discord.com/developers/applications and paste your ID into config.json.
 
-**Ça marche si Discord est fermé ?**
-Non. Discord doit tourner, comme pour un vrai jeu.
+**Does it work if Discord is closed?**
+No. Discord needs to be running, just like for a real game.
 
-**C'est légal ?**
-Oui. C'est l'API officielle de Discord, la même que celle utilisée par les jeux.
+**Is it legal?**
+Yes. It's the official Discord API, the same one games use.
 
-**J'ai pas Python, ça marche quand même ?**
-Non. Python 3 est requis, c'est une installation de deux minutes sur python.org.
+**I don't have Python, does it still work?**
+No. Python 3 is required, it's a two-minute install from python.org.
 
-**Pourquoi je devrais faire ça ?**
-Aucune idée. Mais tes potes verront "Joue à Hermes" et se poseront des questions. C'est le but.
+**Why would I do this?**
+No idea. But your friends will see "Playing Hermes" and start asking questions. That's the point.

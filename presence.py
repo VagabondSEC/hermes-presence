@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Hermes Presence. Affiche "Joue à Hermes" sur Discord comme si c'était un vrai jeu.
+"""Hermes Presence. Shows "Playing Hermes" on Discord like it's a real game.
 
-Commandes :
-  install       installe le lancement automatique (Windows ou Mac) puis lance la présence
-  uninstall     retire le lancement automatique
-  run           lance la présence (utilisé par le lancement automatique)
+Commands :
+  install       installs autostart (Windows or Mac) then launches the presence
+  uninstall     removes autostart
+  run           runs the presence (used by autostart)
 
-La configuration se fait dans config.json à côté de ce fichier.
+Configuration lives in config.json next to this file.
 """
 
 import json
@@ -24,7 +24,7 @@ for _p in list(sys.path):
 try:
     from pypresence import Presence
 except ImportError:
-    print("pypresence manquant. Lance d'abord  pip install -r requirements.txt")
+    print("pypresence missing. Run  pip install -r requirements.txt  first")
     sys.exit(1)
 
 try:
@@ -54,7 +54,7 @@ def load_config():
             cfg.update(json.load(f))
             return cfg
     except Exception as e:
-        print("config.json illisible", e)
+        print("config.json unreadable", e)
         return dict(DEFAULT_CONFIG)
 
 
@@ -217,12 +217,12 @@ def main():
     cfg = load_config()
     if cmd == "install":
         path = install_autostart()
-        print("Autostart installé", path)
+        print("Autostart installed", path)
         spawn_presence()
-        print("Présence lancée")
+        print("Presence launched")
     elif cmd == "uninstall":
         path = uninstall_autostart()
-        print("Autostart retiré", path or "rien à retirer")
+        print("Autostart removed", path or "nothing to remove")
     elif cmd == "run":
         run_presence(cfg)
     else:
