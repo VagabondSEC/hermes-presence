@@ -2,9 +2,9 @@
 
 Show your friends that you are a larper working on Hermes. Your Discord profile displays "Playing Hermes" like it's a real game, with the session timer and everything.
 
-One double-click and you're done. No terminal to keep open, it restarts by itself every time you boot your machine.
-
 Why would I do this? No idea. But your friends will see "Playing Hermes" and start asking questions, or know that you are working hard to take their job. That's the point.
+
+One double-click and you're done. No terminal to keep open, it restarts by itself every time you boot your machine.
 
 ## Windows install
 
