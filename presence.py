@@ -3,7 +3,8 @@
 
 Commands :
   install       installs autostart (Windows or Mac) then launches the presence
-  uninstall     removes autostart
+  uninstall     removes autostart and kills the running presence
+  kill          kills the running presence without touching autostart
   run           runs the presence (used by autostart)
 
 Configuration lives in config.json next to this file.
@@ -182,6 +183,32 @@ def target_running(cfg):
         return True
 
 
+def kill_running():
+    """Tue toutes les instances de présence en cours.
+
+    Ne cible que les process lancés avec l'argument "run" (la présence).
+    Sur Windows le python du venv est un stub qui lance le vrai process,
+    donc os.getpid() ne protège que le stub : filtrer sur "run" évite de
+    se tuer soi-même quand on exécute uninstall/kill.
+    """
+    killed = []
+    if psutil is None:
+        print("psutil missing, cannot kill processes")
+        return killed
+    for p in psutil.process_iter(["pid", "cmdline"]):
+        try:
+            cmd = [str(c) for c in (p.info.get("cmdline") or [])]
+            if "run" not in cmd:
+                continue
+            if not any("presence.py" in c for c in cmd):
+                continue
+            p.kill()
+            killed.append(p.info["pid"])
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+    return killed
+
+
 def run_presence(cfg):
     rpc = Presence(cfg["client_id"])
     rpc.connect()
@@ -223,6 +250,11 @@ def main():
     elif cmd == "uninstall":
         path = uninstall_autostart()
         print("Autostart removed", path or "nothing to remove")
+        killed = kill_running()
+        print("Presence process killed", killed or "nothing running")
+    elif cmd == "kill":
+        killed = kill_running()
+        print("Presence process killed", killed or "nothing running")
     elif cmd == "run":
         run_presence(cfg)
     else:

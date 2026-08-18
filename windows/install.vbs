@@ -1,7 +1,8 @@
 ' Hermes Presence Windows installer (silent, double-click)
 Set sh = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
-dir = fso.GetParentFolderName(WScript.ScriptFullName)
+' le script est dans windows/, presence.py est à la racine du repo
+dir = fso.GetParentFolderName(fso.GetParentFolderName(WScript.ScriptFullName))
 cmd = "cmd /c cd /d """ & dir & """ && python -m venv .venv && .venv\Scripts\python -m pip install -q -r requirements.txt && .venv\Scripts\python presence.py install"
 code = sh.Run(cmd, 0, True)
 If code <> 0 Then

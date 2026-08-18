@@ -7,16 +7,30 @@ One double-click and you're done. No terminal to keep open, it restarts by itsel
 ## Windows install
 
 1. Install Python from python.org if you don't have it (tick Add to PATH)
-2. Double-click install.vbs
+2. Double-click windows/install.vbs
 3. Look at your Discord profile
 
 ## Mac install
 
 1. Install Python from python.org if you don't have it
-2. Double-click install.command (first time, right-click then Open)
+2. Double-click mac/install.command (first time, right-click then Open)
 3. Look at your Discord profile
 
-If macOS refuses to run the file, open a terminal in the folder and type chmod +x install.command then try again.
+If macOS refuses to run the file, open a terminal in the folder and type chmod +x mac/install.command then try again.
+
+## Uninstall
+
+Double-click windows/uninstall.vbs on Windows, mac/uninstall.command on Mac.
+
+It removes the autostart entry and kills the running presence process. Nothing survives, the Discord activity disappears within seconds. You can then delete the folder.
+
+If you only want to stop the presence without removing autostart, run this from a terminal in the repo folder
+
+```
+.venv/bin/python presence.py kill
+```
+
+(or .venv\Scripts\python presence.py kill on Windows)
 
 ## Customize
 
@@ -27,9 +41,15 @@ The first run creates config.json next to the script. Open it with a text editor
 - only_when_process    if you want the presence to show only when a specific program is running (e.g. Hermes.exe)
 - client_id  your own Discord application ID if you don't want to use the shared app
 
-## Uninstall
+## What's inside
 
-Double-click uninstall.vbs on Windows, uninstall.command on Mac. That's it.
+```
+presence.py            the script, shared by both platforms
+requirements.txt       pypresence and psutil
+config.json            created on first run, local only, never committed
+windows/               install.vbs and uninstall.vbs
+mac/                   install.command and uninstall.command
+```
 
 ## How it works
 
@@ -38,7 +58,7 @@ Discord Rich Presence, the official Discord API. The script talks directly to th
 ## FAQ
 
 **Do I need to create a Discord app?**
-No. The repo ships with a shared app named Hermes, ready to use. If you want your own app, create it at discord.com/developers/applications and paste your ID into config.json.
+No. The script ships with a shared app named Hermes, ready to use. If you want your own app, create it at discord.com/developers/applications and paste your ID into config.json.
 
 **Does it work if Discord is closed?**
 No. Discord needs to be running, just like for a real game.
