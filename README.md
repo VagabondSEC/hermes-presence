@@ -15,7 +15,7 @@ Why would I do this? No idea. But your friends will see "Playing Hermes" and sta
 ## Mac install
 
 1. Install Python from python.org if you don't have it
-2. Double-click mac/install.command (first time, right-click then Open)
+2. Double-click mac/install.command. If you downloaded the repo as a ZIP, macOS Gatekeeper blocks the first launch, right-click the file then Open to allow it once
 3. Look at your Discord profile
 
 If macOS complains about permissions or refuses to run the file, open a terminal in the repo folder and run
