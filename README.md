@@ -1,6 +1,6 @@
 # Hermes Presence
 
-Make your friends think you're playing Hermes on Discord. Like it's a real game. With the session timer and everything.
+Show your friends that you are a larper working on Hermes. Your Discord profile displays "Playing Hermes" like it's a real game, with the session timer and everything.
 
 One double-click and you're done. No terminal to keep open, it restarts by itself every time you boot your machine. Your profile shows "Playing Hermes" and nobody will know it's not a AAA game.
 
