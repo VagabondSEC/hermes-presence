@@ -4,6 +4,6 @@
   "details": null,
   "state": null,
   "large_image": null,
-  "only_when_process": "Hermes.exe",
+  "only_when_process": null,
   "check_interval": 15
 }
