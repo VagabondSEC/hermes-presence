@@ -20,7 +20,7 @@ If macOS refuses to run the file, open a terminal in the folder and type chmod +
 
 ## Customize
 
-Open config.json with a text editor.
+The first run creates config.json next to the script. Open it with a text editor.
 
 - details    the first line under "Playing Hermes"
 - state      the second line
