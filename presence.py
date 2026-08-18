@@ -235,10 +235,12 @@ def kill_running():
 
 
 def run_presence(cfg):
-    rpc = Presence(cfg["client_id"])
+    client_id = cfg["client_id"]
+    rpc = Presence(client_id)
     rpc.connect()
     start = int(time.time())
     last_ok = None
+    failures = 0
     while True:
         running = target_running(cfg)
         if running and not last_ok:
@@ -254,10 +256,19 @@ def run_presence(cfg):
                 )
             else:
                 rpc.clear()
+            failures = 0
         except Exception:
-            # Discord fermé ou connexion perdue, on réessaie plus tard
-            time.sleep(30)
+            # Discord fermé ou connexion perdue : on recrée la connexion.
+            # Recréer l'objet Presence est indispensable, reconnecter un
+            # socket mort ne suffit pas toujours.
+            failures += 1
+            time.sleep(min(30 * failures, 120))
             try:
+                rpc.close()
+            except Exception:
+                pass
+            try:
+                rpc = Presence(client_id)
                 rpc.connect()
             except Exception:
                 pass
