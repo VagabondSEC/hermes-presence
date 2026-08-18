@@ -16,7 +16,13 @@ One double-click and you're done. No terminal to keep open, it restarts by itsel
 2. Double-click mac/install.command (first time, right-click then Open)
 3. Look at your Discord profile
 
-If macOS complains about permissions or refuses to run the file, open a terminal in the repo folder and run bash mac/install.command, no chmod needed.
+If macOS complains about permissions or refuses to run the file, open a terminal in the repo folder and run
+
+```
+bash mac/install.command
+```
+
+no chmod needed.
 
 ## Uninstall
 
@@ -24,13 +30,19 @@ Double-click windows/uninstall.vbs on Windows, mac/uninstall.command on Mac.
 
 It removes the autostart entry and kills the running presence process. Nothing survives, the Discord activity disappears within seconds. You can then delete the folder.
 
-If you only want to stop the presence without removing autostart, run this from a terminal in the repo folder
+If you only want to stop the presence without removing autostart, open a terminal in the repo folder and run
+
+Mac
 
 ```
 .venv/bin/python presence.py kill
 ```
 
-(or .venv\Scripts\python presence.py kill on Windows)
+Windows
+
+```
+.venv\Scripts\python presence.py kill
+```
 
 ## Customize
 
