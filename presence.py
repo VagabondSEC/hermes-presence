@@ -90,6 +90,31 @@ def autostart_windows():
     return vbs_path
 
 
+def _launchctl_load(plist_path):
+    """Charge le LaunchAgent. Essaie bootstrap (moderne) puis load (ancien)."""
+    try:
+        uid = os.getuid() if hasattr(os, "getuid") else 0
+        subprocess.run(
+            ["launchctl", "bootstrap", f"gui/{uid}", plist_path],
+            capture_output=True, check=False,
+        )
+    except Exception:
+        pass
+    subprocess.run(["launchctl", "load", "-w", plist_path], capture_output=True, check=False)
+
+
+def _launchctl_unload(plist_path):
+    try:
+        uid = os.getuid() if hasattr(os, "getuid") else 0
+        subprocess.run(
+            ["launchctl", "bootout", f"gui/{uid}", plist_path],
+            capture_output=True, check=False,
+        )
+    except Exception:
+        pass
+    subprocess.run(["launchctl", "unload", "-w", plist_path], capture_output=True, check=False)
+
+
 def autostart_mac():
     plist_dir = os.path.expanduser("~/Library/LaunchAgents")
     os.makedirs(plist_dir, exist_ok=True)
@@ -116,7 +141,7 @@ def autostart_mac():
 </plist>"""
     with open(plist_path, "w", encoding="utf-8") as f:
         f.write(content)
-    subprocess.run(["launchctl", "load", "-w", plist_path], check=False)
+    _launchctl_load(plist_path)
     return plist_path
 
 
@@ -138,7 +163,7 @@ def uninstall_autostart():
             return vbs_path
         return None
     plist_path = os.path.expanduser("~/Library/LaunchAgents/com.hermes.presence.plist")
-    subprocess.run(["launchctl", "unload", "-w", plist_path], check=False)
+    _launchctl_unload(plist_path)
     if os.path.exists(plist_path):
         os.remove(plist_path)
     return plist_path
